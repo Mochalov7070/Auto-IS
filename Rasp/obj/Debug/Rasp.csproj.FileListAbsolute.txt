@@ -1,0 +1,18 @@
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\bin\Debug\Rasp.exe
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\bin\Debug\Rasp.pdb
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\obj\Debug\Rasp.MainForm.resources
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\obj\Debug\Rasp.csproj.GenerateResource.Cache
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\obj\Debug\Rasp.exe
+C:\Users\Игорек\Documents\SharpDevelop Projects\Rasp\Rasp\obj\Debug\Rasp.pdb
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\bin\Debug\Rasp.exe
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\bin\Debug\Rasp.pdb
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\ResolveAssemblyReference.cache
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.Form1.resources
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.MainForm.resources
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.csproj.GenerateResource.Cache
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.exe
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.pdb
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.Form2.resources
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\obj\Debug\Rasp.Form3.resources
+K:\доклады, таблицы, билеты\ДИПЛОМ\Прога\Программа\Rasp\Rasp\bin\Debug\MySql.Data.dll
