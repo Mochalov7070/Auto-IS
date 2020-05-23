@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 06 2020 г., 20:21
+-- Время создания: Май 14 2020 г., 01:40
 -- Версия сервера: 5.6.37
 -- Версия PHP: 5.5.38
 
@@ -25,13 +25,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `auditoriya`
+-- Структура таблицы `audit`
 --
 
-CREATE TABLE `auditoriya` (
-  `id auditoriya` int(200) NOT NULL,
-  `number` varchar(200) NOT NULL
+CREATE TABLE `audit` (
+  `idaudit` int(200) NOT NULL,
+  `num` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `audit`
+--
+
+INSERT INTO `audit` (`idaudit`, `num`) VALUES
+(1, '123'),
+(2, '124');
 
 -- --------------------------------------------------------
 
@@ -44,6 +52,14 @@ CREATE TABLE `date` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `date`
+--
+
+INSERT INTO `date` (`id date`, `date`) VALUES
+(1, '2020-05-07'),
+(2, '2020-05-08');
+
 -- --------------------------------------------------------
 
 --
@@ -51,25 +67,41 @@ CREATE TABLE `date` (
 --
 
 CREATE TABLE `disciplina` (
-  `id disciplina` int(200) NOT NULL,
-  `id prepod` int(200) NOT NULL,
+  `iddisc` int(200) NOT NULL,
+  `idprepod` int(200) DEFAULT NULL,
   `name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `disciplina`
+--
+
+INSERT INTO `disciplina` (`iddisc`, `idprepod`, `name`) VALUES
+(1, 1, 'Английский'),
+(2, 1, 'МДК');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `group`
+-- Структура таблицы `grup`
 --
 
-CREATE TABLE `group` (
-  `id group` int(200) NOT NULL,
-  `id` int(200) NOT NULL,
-  `id disciplina` int(200) NOT NULL,
-  `kod group` varchar(200) NOT NULL,
-  `nomer group` varchar(200) NOT NULL,
-  `kolichestvo students` varchar(200) NOT NULL
+CREATE TABLE `grup` (
+  `idgrup` int(200) NOT NULL,
+  `id` int(200) DEFAULT NULL,
+  `iddisc` int(200) DEFAULT NULL,
+  `kod` varchar(200) NOT NULL,
+  `num` varchar(200) NOT NULL,
+  `kolvo` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `grup`
+--
+
+INSERT INTO `grup` (`idgrup`, `id`, `iddisc`, `kod`, `num`, `kolvo`) VALUES
+(1, NULL, 2, '231', '3241', '26'),
+(4, NULL, NULL, '13', '421', '4321');
 
 -- --------------------------------------------------------
 
@@ -82,6 +114,16 @@ CREATE TABLE `kurs` (
   `number` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `kurs`
+--
+
+INSERT INTO `kurs` (`id kurs`, `number`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -89,9 +131,18 @@ CREATE TABLE `kurs` (
 --
 
 CREATE TABLE `otdelenie` (
-  `Id otdel` int(200) NOT NULL,
-  `name otdel` varchar(200) NOT NULL
+  `Idotdel` int(200) NOT NULL,
+  `nameotdel` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `otdelenie`
+--
+
+INSERT INTO `otdelenie` (`Idotdel`, `nameotdel`) VALUES
+(1, 'ОСП 1'),
+(2, 'ОСП 2'),
+(3, 'ОСП 3');
 
 -- --------------------------------------------------------
 
@@ -100,10 +151,18 @@ CREATE TABLE `otdelenie` (
 --
 
 CREATE TABLE `prepod` (
-  `id prepod` int(200) NOT NULL,
+  `idprepod` int(200) NOT NULL,
   `fio` varchar(200) NOT NULL,
   `doljnost` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `prepod`
+--
+
+INSERT INTO `prepod` (`idprepod`, `fio`, `doljnost`) VALUES
+(1, 'Кафка Алексей Андреевич ', 'Астрономия'),
+(11, 'Лютиков Владимир Сергеевич', 'Информатика');
 
 -- --------------------------------------------------------
 
@@ -113,15 +172,40 @@ CREATE TABLE `prepod` (
 
 CREATE TABLE `raspisanie` (
   `rasp` int(11) NOT NULL,
-  `id otdel` int(200) NOT NULL,
-  `id date` date NOT NULL,
-  `id kurs` int(200) NOT NULL,
-  `id group` int(200) NOT NULL,
-  `id para` int(6) NOT NULL,
-  `id disciplina` int(200) NOT NULL,
-  `id prepod` int(200) NOT NULL,
-  `id auditoriya` int(200) NOT NULL
+  `idotdel` int(200) NOT NULL,
+  `iddate` date NOT NULL,
+  `idkurs` int(200) NOT NULL,
+  `idgrup` int(200) NOT NULL,
+  `idpara` int(6) NOT NULL,
+  `iddisc` int(200) NOT NULL,
+  `idprepod` int(200) NOT NULL,
+  `idaudit` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tablica`
+--
+
+CREATE TABLE `tablica` (
+  `id` int(200) NOT NULL,
+  `otdel` varchar(200) NOT NULL,
+  `begin` varchar(200) NOT NULL,
+  `end` varchar(200) NOT NULL,
+  `kurs` varchar(200) NOT NULL,
+  `grup` varchar(200) NOT NULL,
+  `discip` varchar(200) NOT NULL,
+  `prepod` varchar(200) NOT NULL,
+  `audit` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `tablica`
+--
+
+INSERT INTO `tablica` (`id`, `otdel`, `begin`, `end`, `kurs`, `grup`, `discip`, `prepod`, `audit`) VALUES
+(1, 'ОСП 3', '13 мая 2020 11:37', '13 мая 2020 11:39', '4', '3241', 'Английский', 'Кафка Алексей Андреевич ', '124');
 
 -- --------------------------------------------------------
 
@@ -130,10 +214,18 @@ CREATE TABLE `raspisanie` (
 --
 
 CREATE TABLE `time` (
-  `id para` int(200) NOT NULL,
-  `begin zan` time(6) NOT NULL,
-  `end zan` time(6) NOT NULL
+  `idtime` int(200) NOT NULL,
+  `begin` varchar(200) NOT NULL,
+  `end` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `time`
+--
+
+INSERT INTO `time` (`idtime`, `begin`, `end`) VALUES
+(10, '13 мая 2020 11:37', '13 мая 2020 11:37'),
+(11, '13 мая 2020 11:39', '13 мая 2020 11:39');
 
 -- --------------------------------------------------------
 
@@ -152,10 +244,10 @@ CREATE TABLE `vid zanyatiy` (
 --
 
 --
--- Индексы таблицы `auditoriya`
+-- Индексы таблицы `audit`
 --
-ALTER TABLE `auditoriya`
-  ADD PRIMARY KEY (`id auditoriya`);
+ALTER TABLE `audit`
+  ADD PRIMARY KEY (`idaudit`);
 
 --
 -- Индексы таблицы `date`
@@ -168,15 +260,15 @@ ALTER TABLE `date`
 -- Индексы таблицы `disciplina`
 --
 ALTER TABLE `disciplina`
-  ADD PRIMARY KEY (`id disciplina`),
-  ADD KEY `id prepod` (`id prepod`);
+  ADD PRIMARY KEY (`iddisc`),
+  ADD KEY `id prepod` (`idprepod`);
 
 --
--- Индексы таблицы `group`
+-- Индексы таблицы `grup`
 --
-ALTER TABLE `group`
-  ADD PRIMARY KEY (`id group`),
-  ADD KEY `id disciplina` (`id disciplina`);
+ALTER TABLE `grup`
+  ADD PRIMARY KEY (`idgrup`),
+  ADD KEY `id disciplina` (`iddisc`);
 
 --
 -- Индексы таблицы `kurs`
@@ -188,33 +280,39 @@ ALTER TABLE `kurs`
 -- Индексы таблицы `otdelenie`
 --
 ALTER TABLE `otdelenie`
-  ADD PRIMARY KEY (`Id otdel`) USING BTREE;
+  ADD PRIMARY KEY (`Idotdel`) USING BTREE;
 
 --
 -- Индексы таблицы `prepod`
 --
 ALTER TABLE `prepod`
-  ADD PRIMARY KEY (`id prepod`);
+  ADD PRIMARY KEY (`idprepod`);
 
 --
 -- Индексы таблицы `raspisanie`
 --
 ALTER TABLE `raspisanie`
   ADD PRIMARY KEY (`rasp`),
-  ADD KEY `id otdel` (`id otdel`) USING BTREE,
-  ADD KEY `id date` (`id date`),
-  ADD KEY `id kurs` (`id kurs`,`id group`,`id para`,`id disciplina`,`id prepod`,`id auditoriya`),
-  ADD KEY `id disciplina` (`id disciplina`),
-  ADD KEY `id group` (`id group`),
-  ADD KEY `id para` (`id para`),
-  ADD KEY `id prepod` (`id prepod`),
-  ADD KEY `id auditoriya` (`id auditoriya`);
+  ADD KEY `id otdel` (`idotdel`) USING BTREE,
+  ADD KEY `id date` (`iddate`),
+  ADD KEY `id kurs` (`idkurs`,`idgrup`,`idpara`,`iddisc`,`idprepod`,`idaudit`),
+  ADD KEY `id disciplina` (`iddisc`),
+  ADD KEY `id group` (`idgrup`),
+  ADD KEY `id para` (`idpara`),
+  ADD KEY `id prepod` (`idprepod`),
+  ADD KEY `id auditoriya` (`idaudit`);
+
+--
+-- Индексы таблицы `tablica`
+--
+ALTER TABLE `tablica`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `time`
 --
 ALTER TABLE `time`
-  ADD PRIMARY KEY (`id para`);
+  ADD PRIMARY KEY (`idtime`);
 
 --
 -- Индексы таблицы `vid zanyatiy`
@@ -228,25 +326,25 @@ ALTER TABLE `vid zanyatiy`
 --
 
 --
--- AUTO_INCREMENT для таблицы `auditoriya`
+-- AUTO_INCREMENT для таблицы `audit`
 --
-ALTER TABLE `auditoriya`
-  MODIFY `id auditoriya` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `audit`
+  MODIFY `idaudit` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT для таблицы `date`
 --
 ALTER TABLE `date`
-  MODIFY `id date` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id date` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT для таблицы `disciplina`
 --
 ALTER TABLE `disciplina`
-  MODIFY `id disciplina` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddisc` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT для таблицы `group`
+-- AUTO_INCREMENT для таблицы `grup`
 --
-ALTER TABLE `group`
-  MODIFY `id group` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `grup`
+  MODIFY `idgrup` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `kurs`
 --
@@ -256,27 +354,32 @@ ALTER TABLE `kurs`
 -- AUTO_INCREMENT для таблицы `otdelenie`
 --
 ALTER TABLE `otdelenie`
-  MODIFY `Id otdel` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Idotdel` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `prepod`
 --
 ALTER TABLE `prepod`
-  MODIFY `id prepod` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idprepod` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT для таблицы `raspisanie`
 --
 ALTER TABLE `raspisanie`
-  MODIFY `rasp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rasp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT для таблицы `tablica`
+--
+ALTER TABLE `tablica`
+  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `time`
 --
 ALTER TABLE `time`
-  MODIFY `id para` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idtime` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `vid zanyatiy`
 --
 ALTER TABLE `vid zanyatiy`
-  MODIFY `Id vida` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id vida` int(200) NOT NULL AUTO_INCREMENT;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -285,32 +388,32 @@ ALTER TABLE `vid zanyatiy`
 -- Ограничения внешнего ключа таблицы `disciplina`
 --
 ALTER TABLE `disciplina`
-  ADD CONSTRAINT `disciplina_ibfk_1` FOREIGN KEY (`id prepod`) REFERENCES `prepod` (`id prepod`);
+  ADD CONSTRAINT `disciplina_ibfk_1` FOREIGN KEY (`idprepod`) REFERENCES `prepod` (`idprepod`);
 
 --
--- Ограничения внешнего ключа таблицы `group`
+-- Ограничения внешнего ключа таблицы `grup`
 --
-ALTER TABLE `group`
-  ADD CONSTRAINT `group_ibfk_1` FOREIGN KEY (`id disciplina`) REFERENCES `disciplina` (`id disciplina`);
+ALTER TABLE `grup`
+  ADD CONSTRAINT `grup_ibfk_1` FOREIGN KEY (`iddisc`) REFERENCES `disciplina` (`iddisc`);
 
 --
 -- Ограничения внешнего ключа таблицы `raspisanie`
 --
 ALTER TABLE `raspisanie`
-  ADD CONSTRAINT `raspisanie_ibfk_1` FOREIGN KEY (`id otdel`) REFERENCES `otdelenie` (`Id otdel`),
-  ADD CONSTRAINT `raspisanie_ibfk_3` FOREIGN KEY (`id disciplina`) REFERENCES `disciplina` (`id disciplina`),
-  ADD CONSTRAINT `raspisanie_ibfk_4` FOREIGN KEY (`id group`) REFERENCES `group` (`id group`),
-  ADD CONSTRAINT `raspisanie_ibfk_5` FOREIGN KEY (`id kurs`) REFERENCES `kurs` (`id kurs`),
-  ADD CONSTRAINT `raspisanie_ibfk_6` FOREIGN KEY (`id para`) REFERENCES `time` (`id para`),
-  ADD CONSTRAINT `raspisanie_ibfk_7` FOREIGN KEY (`id prepod`) REFERENCES `prepod` (`id prepod`),
-  ADD CONSTRAINT `raspisanie_ibfk_8` FOREIGN KEY (`id auditoriya`) REFERENCES `auditoriya` (`id auditoriya`),
-  ADD CONSTRAINT `raspisanie_ibfk_9` FOREIGN KEY (`id date`) REFERENCES `date` (`date`);
+  ADD CONSTRAINT `raspisanie_ibfk_1` FOREIGN KEY (`idotdel`) REFERENCES `otdelenie` (`Idotdel`),
+  ADD CONSTRAINT `raspisanie_ibfk_3` FOREIGN KEY (`iddisc`) REFERENCES `disciplina` (`iddisc`),
+  ADD CONSTRAINT `raspisanie_ibfk_4` FOREIGN KEY (`idgrup`) REFERENCES `grup` (`idgrup`),
+  ADD CONSTRAINT `raspisanie_ibfk_5` FOREIGN KEY (`idkurs`) REFERENCES `kurs` (`id kurs`),
+  ADD CONSTRAINT `raspisanie_ibfk_6` FOREIGN KEY (`idpara`) REFERENCES `time` (`idtime`),
+  ADD CONSTRAINT `raspisanie_ibfk_7` FOREIGN KEY (`idprepod`) REFERENCES `prepod` (`idprepod`),
+  ADD CONSTRAINT `raspisanie_ibfk_8` FOREIGN KEY (`idaudit`) REFERENCES `audit` (`idaudit`),
+  ADD CONSTRAINT `raspisanie_ibfk_9` FOREIGN KEY (`iddate`) REFERENCES `date` (`date`);
 
 --
 -- Ограничения внешнего ключа таблицы `vid zanyatiy`
 --
 ALTER TABLE `vid zanyatiy`
-  ADD CONSTRAINT `vid zanyatiy_ibfk_1` FOREIGN KEY (`id disciplina`) REFERENCES `disciplina` (`id disciplina`);
+  ADD CONSTRAINT `vid zanyatiy_ibfk_1` FOREIGN KEY (`id disciplina`) REFERENCES `disciplina` (`iddisc`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
